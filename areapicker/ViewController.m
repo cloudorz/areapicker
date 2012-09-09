@@ -7,28 +7,94 @@
 //
 
 #import "ViewController.h"
+#import "HZAreaPickerView.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate, HZAreaPickerDelegate>
+
+@property (retain, nonatomic) IBOutlet UITextField *areaText;
+@property (retain, nonatomic) IBOutlet UITextField *cityText;
+@property (strong, nonatomic) NSString *areaValue, *cityValue;
+@property (strong, nonatomic) HZAreaPickerView *locatePicker;
+
+-(void)cancelLocatePicker;
 
 @end
 
 @implementation ViewController
+@synthesize areaText;
+@synthesize cityText;
+@synthesize areaValue=_areaValue, cityValue=_cityValue;
+@synthesize locatePicker=_locatePicker;
 
-- (void)viewDidLoad
+- (void)dealloc {
+    [areaText release];
+    [cityText release];
+    [_cityValue release];
+    [_areaValue release];
+    [super dealloc];
+}
+
+-(void)setAreaValue:(NSString *)areaValue
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    if (![_areaValue isEqualToString:areaValue]) {
+        _areaValue = [areaValue retain];
+        self.areaText.text = areaValue;
+    }
+}
+
+-(void)setCityValue:(NSString *)cityValue
+{
+    if (![_cityValue isEqualToString:cityValue]) {
+        _cityValue = [cityValue retain];
+        self.cityText.text = cityValue;
+    }
 }
 
 - (void)viewDidUnload
 {
+    [self setAreaText:nil];
+    [self setCityText:nil];
+    [self cancelLocatePicker];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+#pragma mark - HZAreaPicker delegate
+-(void)pickerDidChaneStatus:(HZAreaPickerView *)picker
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
+        self.areaValue = [NSString stringWithFormat:@"%@ %@ %@", picker.locate.state, picker.locate.city, picker.locate.district];
+    } else{
+        self.cityValue = [NSString stringWithFormat:@"%@ %@", picker.locate.state, picker.locate.city];
+    }
+}
+
+-(void)cancelLocatePicker
+{
+    [self.locatePicker cancelPicker];
+    self.locatePicker.delegate = nil;
+    self.locatePicker = nil;
+}
+
+
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if ([textField isEqual:self.areaText]) {
+        [self cancelLocatePicker];
+        self.locatePicker = [[[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCityAndDistrict delegate:self] autorelease];
+        [self.locatePicker showInView:self.view];
+    } else {
+        [self cancelLocatePicker];
+        self.locatePicker = [[[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCity delegate:self] autorelease];
+        [self.locatePicker showInView:self.view];
+    }
+    return NO;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    [self cancelLocatePicker];
 }
 
 @end

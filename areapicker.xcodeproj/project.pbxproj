@@ -15,6 +15,12 @@
 		619CFB7615FCD223002A122D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 619CFB7515FCD223002A122D /* AppDelegate.m */; };
 		619CFB7915FCD223002A122D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619CFB7815FCD223002A122D /* ViewController.m */; };
 		619CFB7C15FCD223002A122D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619CFB7A15FCD223002A122D /* ViewController.xib */; };
+		619CFB8B15FCD2CB002A122D /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 619CFB8A15FCD2CB002A122D /* area.plist */; };
+		619CFB8E15FCD2FB002A122D /* HZAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 619CFB8D15FCD2FB002A122D /* HZAreaPickerView.m */; };
+		619CFB9115FCD324002A122D /* HZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 619CFB9015FCD324002A122D /* HZLocation.m */; };
+		619CFB9315FCD693002A122D /* HZAreaPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619CFB9215FCD693002A122D /* HZAreaPickerView.xib */; };
+		619CFB9515FCDA0A002A122D /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 619CFB9415FCDA0A002A122D /* city.plist */; };
+		619CFB9C15FCE294002A122D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619CFB9B15FCE294002A122D /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,14 @@
 		619CFB7715FCD223002A122D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		619CFB7815FCD223002A122D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		619CFB7B15FCD223002A122D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		619CFB8A15FCD2CB002A122D /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		619CFB8C15FCD2FB002A122D /* HZAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZAreaPickerView.h; sourceTree = "<group>"; };
+		619CFB8D15FCD2FB002A122D /* HZAreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZAreaPickerView.m; sourceTree = "<group>"; };
+		619CFB8F15FCD324002A122D /* HZLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLocation.h; sourceTree = "<group>"; };
+		619CFB9015FCD324002A122D /* HZLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLocation.m; sourceTree = "<group>"; };
+		619CFB9215FCD693002A122D /* HZAreaPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZAreaPickerView.xib; sourceTree = "<group>"; };
+		619CFB9415FCDA0A002A122D /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
+		619CFB9B15FCE294002A122D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				619CFB9C15FCE294002A122D /* QuartzCore.framework in Frameworks */,
 				619CFB6615FCD223002A122D /* UIKit.framework in Frameworks */,
 				619CFB6815FCD223002A122D /* Foundation.framework in Frameworks */,
 				619CFB6A15FCD223002A122D /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +82,7 @@
 		619CFB6415FCD223002A122D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				619CFB9B15FCE294002A122D /* QuartzCore.framework */,
 				619CFB6515FCD223002A122D /* UIKit.framework */,
 				619CFB6715FCD223002A122D /* Foundation.framework */,
 				619CFB6915FCD223002A122D /* CoreGraphics.framework */,
@@ -77,6 +93,7 @@
 		619CFB6B15FCD223002A122D /* areapicker */ = {
 			isa = PBXGroup;
 			children = (
+				619CFB8615FCD268002A122D /* area picker */,
 				619CFB7415FCD223002A122D /* AppDelegate.h */,
 				619CFB7515FCD223002A122D /* AppDelegate.m */,
 				619CFB7715FCD223002A122D /* ViewController.h */,
@@ -96,6 +113,20 @@
 				619CFB7315FCD223002A122D /* areapicker-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		619CFB8615FCD268002A122D /* area picker */ = {
+			isa = PBXGroup;
+			children = (
+				619CFB9415FCDA0A002A122D /* city.plist */,
+				619CFB8A15FCD2CB002A122D /* area.plist */,
+				619CFB8C15FCD2FB002A122D /* HZAreaPickerView.h */,
+				619CFB8D15FCD2FB002A122D /* HZAreaPickerView.m */,
+				619CFB9215FCD693002A122D /* HZAreaPickerView.xib */,
+				619CFB8F15FCD324002A122D /* HZLocation.h */,
+				619CFB9015FCD324002A122D /* HZLocation.m */,
+			);
+			name = "area picker";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +182,9 @@
 			files = (
 				619CFB7015FCD223002A122D /* InfoPlist.strings in Resources */,
 				619CFB7C15FCD223002A122D /* ViewController.xib in Resources */,
+				619CFB8B15FCD2CB002A122D /* area.plist in Resources */,
+				619CFB9315FCD693002A122D /* HZAreaPickerView.xib in Resources */,
+				619CFB9515FCDA0A002A122D /* city.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +198,8 @@
 				619CFB7215FCD223002A122D /* main.m in Sources */,
 				619CFB7615FCD223002A122D /* AppDelegate.m in Sources */,
 				619CFB7915FCD223002A122D /* ViewController.m in Sources */,
+				619CFB8E15FCD2FB002A122D /* HZAreaPickerView.m in Sources */,
+				619CFB9115FCD324002A122D /* HZLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +246,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -229,7 +265,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -242,6 +278,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "areapicker/areapicker-Prefix.pch";
 				INFOPLIST_FILE = "areapicker/areapicker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -253,6 +290,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "areapicker/areapicker-Prefix.pch";
 				INFOPLIST_FILE = "areapicker/areapicker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

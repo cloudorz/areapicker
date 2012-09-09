@@ -1,0 +1,16 @@
+.DS_Store
+build
+Build
+Products
+*.pbxuser
+*.perspectivev3
+*.mode1v3
+xcuserdata
+.DS_Store
+config
+extensions/
+
+*.pyc
+Docs
+
+*.xcworkspace
