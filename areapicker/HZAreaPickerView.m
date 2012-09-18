@@ -21,11 +21,14 @@
 @implementation HZAreaPickerView
 
 @synthesize delegate=_delegate;
+@synthesize datasource=_datasource;
 @synthesize pickerStyle=_pickerStyle;
 @synthesize locate=_locate;
 
 - (void)dealloc
 {
+    self.datasource = nil;
+    self.delegate = nil;
     [_locate release];
     [_locatePicker release];
     [provinces release];
@@ -41,22 +44,21 @@
     return _locate;
 }
 
-- (id)initWithStyle:(HZAreaPickerStyle)pickerStyle delegate:(id<HZAreaPickerDelegate>)delegate
+- (id)initWithStyle:(HZAreaPickerStyle)pickerStyle withDelegate:(id <HZAreaPickerDelegate>)delegate andDatasource:(id <HZAreaPickerDatasource>)datasource
 {
     
     self = [[[[NSBundle mainBundle] loadNibNamed:@"HZAreaPickerView" owner:self options:nil] objectAtIndex:0] retain];
     if (self) {
         self.delegate = delegate;
         self.pickerStyle = pickerStyle;
+        self.datasource = datasource;
         self.locatePicker.dataSource = self;
         self.locatePicker.delegate = self;
         
-        //加载数据
+        provinces = [[self.datasource areaPickerData:self] retain];
+        cities = [[provinces objectAtIndex:0] objectForKey:@"cities"];
+        self.locate.state = [[provinces objectAtIndex:0] objectForKey:@"state"];
         if (self.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
-            provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil]];
-            cities = [[provinces objectAtIndex:0] objectForKey:@"cities"];
-            
-            self.locate.state = [[provinces objectAtIndex:0] objectForKey:@"state"];
             self.locate.city = [[cities objectAtIndex:0] objectForKey:@"city"];
             
             areas = [[cities objectAtIndex:0] objectForKey:@"areas"];
@@ -67,9 +69,6 @@
             }
             
         } else{
-            provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"city.plist" ofType:nil]];
-            cities = [[provinces objectAtIndex:0] objectForKey:@"cities"];
-            self.locate.state = [[provinces objectAtIndex:0] objectForKey:@"state"];
             self.locate.city = [cities objectAtIndex:0];
         }
     }

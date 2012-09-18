@@ -16,6 +16,12 @@ typedef enum {
 
 @class HZAreaPickerView;
 
+@protocol HZAreaPickerDatasource <NSObject>
+
+- (NSArray *)areaPickerData:(HZAreaPickerView *)picker;
+
+@end
+
 @protocol HZAreaPickerDelegate <NSObject>
 
 @optional
@@ -26,11 +32,12 @@ typedef enum {
 @interface HZAreaPickerView : UIView <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (assign, nonatomic) id <HZAreaPickerDelegate> delegate;
+@property (assign, nonatomic) id <HZAreaPickerDatasource> datasource;
 @property (strong, nonatomic) IBOutlet UIPickerView *locatePicker;
 @property (strong, nonatomic) HZLocation *locate;
 @property (nonatomic) HZAreaPickerStyle pickerStyle;
 
-- (id)initWithStyle:(HZAreaPickerStyle)pickerStyle delegate:(id <HZAreaPickerDelegate>)delegate;
+- (id)initWithStyle:(HZAreaPickerStyle)pickerStyle withDelegate:(id <HZAreaPickerDelegate>)delegate andDatasource:(id <HZAreaPickerDatasource>)datasource;
 - (void)showInView:(UIView *)view;
 - (void)cancelPicker;
 

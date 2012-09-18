@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "HZAreaPickerView.h"
 
-@interface ViewController () <UITextFieldDelegate, HZAreaPickerDelegate>
+@interface ViewController () <UITextFieldDelegate, HZAreaPickerDelegate, HZAreaPickerDatasource>
 
 @property (retain, nonatomic) IBOutlet UITextField *areaText;
 @property (retain, nonatomic) IBOutlet UITextField *cityText;
@@ -69,6 +69,19 @@
     }
 }
 
+-(NSArray *)areaPickerData:(HZAreaPickerView *)picker
+{
+    NSArray *data;
+    if (picker.pickerStyle == HZAreaPickerWithStateAndCityAndDistrict) {
+        data = [[[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil]] autorelease];
+    } else{
+        data = [[[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"city.plist" ofType:nil]] autorelease];
+    }
+    return data;
+}
+
+
+
 -(void)cancelLocatePicker
 {
     [self.locatePicker cancelPicker];
@@ -82,11 +95,15 @@
 {
     if ([textField isEqual:self.areaText]) {
         [self cancelLocatePicker];
-        self.locatePicker = [[[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCityAndDistrict delegate:self] autorelease];
+        self.locatePicker = [[[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCityAndDistrict
+                                                        withDelegate:self
+                                                       andDatasource:self] autorelease];
         [self.locatePicker showInView:self.view];
     } else {
         [self cancelLocatePicker];
-        self.locatePicker = [[[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCity delegate:self] autorelease];
+        self.locatePicker = [[[HZAreaPickerView alloc] initWithStyle:HZAreaPickerWithStateAndCity
+                                                            withDelegate:self
+                                                           andDatasource:self] autorelease];
         [self.locatePicker showInView:self.view];
     }
     return NO;
